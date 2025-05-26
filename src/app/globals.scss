@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #00a8ff;
+  --secondary-color: #0097e6;
+  --text-color: #2f3640;
+  --background-color: #f5f6fa;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  line-height: 1.6;
+}
+
+main {
+  min-height: calc(100vh - 200px);
+  padding: 2rem;
+} 

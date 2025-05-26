@@ -1,0 +1,186 @@
+.footer {
+  background-color: #f9fafb;
+  padding: 4rem 0 2rem;
+  margin-top: 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.column {
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1f2937;
+  }
+}
+
+.text {
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.5rem;
+    color: #4b5563;
+  }
+}
+
+.link {
+  color: #4b5563;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #2563eb;
+  }
+}
+
+.bottom {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.copyright {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  a {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}
+
+.footerDescription {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.footerLink {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #00a8ff;
+  }
+}
+
+.newsletterText {
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletterInput {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+
+  &::placeholder {
+    color: #ccc;
+  }
+}
+
+.newsletterButton {
+  background: #00a8ff;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #0097e6;
+  }
+}
+
+.footerBottom {
+  margin-top: 4rem;
+  padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.legalLink {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #00a8ff;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .column {
+    text-align: center;
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .socialLinks {
+    justify-content: center;
+  }
+} 
