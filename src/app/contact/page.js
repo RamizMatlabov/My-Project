@@ -1,6 +1,24 @@
+"use client"
+
 import styles from '@/styles/Contact.module.scss'
+import { useRef } from 'react'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
+  const from = useRef()
+  function submit(e) {
+    e.preventDefault()
+
+    emailjs.sendForm('service_qorrope', 'template_otc69hd', from.current, '5d_FVNKGmUFzETuCP')
+      .then((result) => {
+        alert("message sent " + result.text)
+      }, (error) => {
+        alert("An error occurred, Please try again " + error.text)
+      })
+
+    e.target.reset()
+  }
+
   return (
     <div className={styles.container}>
       {/* Hero Section */}
@@ -31,7 +49,7 @@ export default function Contact() {
                 <span className={styles.contactIcon}>📱</span>
               </div>
               <h3 className={styles.cardTitle}>Phone</h3>
-              <p className={styles.cardText}>+1 (555) 123-4567</p>
+              <p className={styles.cardText}>+998 (33) 433-44-04</p>
               <a href="tel:+15551234567" className={styles.contactLink}>
                 <span className={styles.linkIcon}>📞</span>
                 Call us now
@@ -52,36 +70,21 @@ export default function Contact() {
         </div>
 
         {/* Contact Form */}
-        <div className={styles.contactFormSection}>
-          <h2 className={styles.sectionTitle}>Send us a Message</h2>
-          <form className={styles.contactForm}>
-            <div className={styles.formGroup}>
-              <label htmlFor="name">
-                <span className={styles.formIcon}>👤</span>
-                Name
-              </label>
-              <input type="text" id="name" placeholder="Your name" />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="email">
-                <span className={styles.formIcon}>📧</span>
-                Email
-              </label>
-              <input type="email" id="email" placeholder="Your email" />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="message">
-                <span className={styles.formIcon}>💬</span>
-                Message
-              </label>
-              <textarea id="message" placeholder="Your message" rows="5"></textarea>
-            </div>
-            <button type="submit" className={styles.submitButton}>
-              <span className={styles.buttonIcon}>✉️</span>
-              Send Message
-            </button>
-          </form>
-        </div>
+        <form ref={from} onSubmit={submit} className={styles.contactForm}>
+          <div className={styles.formGroup}>
+            <label htmlFor="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" className={styles.submitButton}>Send Message</button>
+        </form>
 
         {/* Social Media */}
         <div className={styles.socialSection}>
