@@ -19,7 +19,7 @@ export default function About() {
           <div className={styles.contentText}>
             <div className={styles.sectionIcon}>💧</div>
             <h2>Our Mission</h2>
-            <p>We are passionate about providing the best quality ice water to our customers. Our mission is to deliver refreshing and pure ice water that meets the highest standards of quality and safety.</p>
+            <p>We&apos;re dedicated to providing the purest water for your health and well-being. Our mission is to deliver premium quality water that promotes health and sustainability while maintaining the highest standards of purity and service.</p>
             <div className={styles.missionStats}>
               <div className={styles.statItem}>
                 <span className={styles.statNumber}>100%</span>
@@ -94,7 +94,7 @@ export default function About() {
             <div className={styles.valueCard}>
               <div className={styles.valueIcon}>🌍</div>
               <h3>Sustainability</h3>
-              <p>We're committed to protecting our planet through eco-friendly practices.</p>
+              <p>We&apos;re committed to protecting our planet through eco-friendly practices.</p>
             </div>
             <div className={styles.valueCard}>
               <div className={styles.valueIcon}>🤝</div>
