@@ -38,7 +38,7 @@ export default function Footer() {
             <h3 className={styles.title}>Contact</h3>
             <ul className={styles.list}>
               <li>Email: info@icewater.com</li>
-              <li>Phone: (555) 123-4567</li>
+              <li>Phone: (33) 433-44-04</li>
               <li>Address: 123 Water Street, Spring City</li>
             </ul>
           </div>

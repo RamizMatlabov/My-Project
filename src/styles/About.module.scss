@@ -207,24 +207,164 @@
   margin-bottom: 1rem;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding: 80px 20px 40px;
+/* Tablet Styles */
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 1rem;
+  }
 
-    h1 {
-      font-size: 2.5rem;
+  .hero {
+    padding: 3rem 0;
+
+    .heroContent {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .heroSubtitle {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .mainContent {
+    .contentGrid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
 
-    .heroSubtitle {
+    .missionStats {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .teamGrid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .valuesGrid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .processList {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .hero {
+    padding: 2rem 0;
+
+    .heroContent {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .heroSubtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .mainContent {
+    .contentGrid {
+      gap: 1.5rem;
+    }
+
+    .missionStats {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .teamGrid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .valuesGrid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .processList {
+      grid-template-columns: 1fr;
+    }
+
+    .sectionIcon {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3 {
       font-size: 1.2rem;
     }
+
+    .teamMember {
+      padding: 1rem;
+
+      .memberIcon {
+        font-size: 2.5rem;
+      }
+    }
+
+    .valueCard {
+      padding: 1rem;
+
+      .valueIcon {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+/* Small Mobile Styles */
+@media screen and (max-width: 480px) {
+  .hero {
+    .heroContent {
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .heroSubtitle {
+        font-size: 0.9rem;
+      }
+    }
   }
 
-  .missionStats {
-    grid-template-columns: 1fr;
-  }
+  .mainContent {
+    .statItem {
+      .statNumber {
+        font-size: 1.5rem;
+      }
 
-  .contentGrid {
-    padding: 20px;
+      .statLabel {
+        font-size: 0.9rem;
+      }
+    }
+
+    .processList {
+      li {
+        font-size: 0.9rem;
+      }
+    }
+
+    .teamMember {
+      .memberBio {
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
   }
 } 
