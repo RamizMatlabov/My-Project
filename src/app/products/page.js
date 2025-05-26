@@ -1,6 +1,7 @@
 "use client"
 
 import styles from './products.module.scss'
+import Image from 'next/image'
 
 const products = [
   {
@@ -59,7 +60,13 @@ export default function Products() {
         {products.map((product) => (
           <div key={product.id} className={styles.product}>
             <div className={styles.imageContainer}>
-              <img src={product.image} alt={product.name} className={styles.image} />
+              <Image 
+                src={product.image}
+                alt={product.name}
+                width={500}
+                height={300}
+                priority
+              />
             </div>
             <div className={styles.content}>
               <h2>{product.name}</h2>

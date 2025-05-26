@@ -11,9 +11,9 @@ export default function Contact() {
 
     emailjs.sendForm('service_qorrope', 'template_otc69hd', from.current, '5d_FVNKGmUFzETuCP')
       .then((result) => {
-        alert("message sent " + result.text)
+        alert("message sent" + result.text)
       }, (error) => {
-        alert("An error occurred, Please try again " + error.text)
+        alert("An error occurred, Please try again" + error.text)
       })
 
     e.target.reset()
@@ -25,7 +25,7 @@ export default function Contact() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>Contact Us</h1>
-          <p className={styles.heroSubtitle}>We'd love to hear from you</p>
+          <p className={styles.heroSubtitle}>We&apos;d love to hear from you</p>
         </div>
       </section>
 
@@ -49,7 +49,7 @@ export default function Contact() {
                 <span className={styles.contactIcon}>📱</span>
               </div>
               <h3 className={styles.cardTitle}>Phone</h3>
-              <p className={styles.cardText}>+998 (33) 433-44-04</p>
+              <p className={styles.cardText}>+1 (555) 123-4567</p>
               <a href="tel:+15551234567" className={styles.contactLink}>
                 <span className={styles.linkIcon}>📞</span>
                 Call us now
