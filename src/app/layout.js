@@ -1,5 +1,4 @@
 import '@/styles/globals.css'
-import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Inter } from 'next/font/google'
 import Navigation from '@/components/Navigation/Navigation'
@@ -19,8 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={inter.className}>
       <body>
         <Navigation />
-        <div className="min-h-screen flex flex-col">
-          <Header />
+        <div className="min-h-screen flex flex-col main-layout">
           <main className="flex-grow">
             <div className="container mx-auto px-4 py-8">
               {children}

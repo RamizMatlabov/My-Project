@@ -98,4 +98,15 @@ input {
 ::selection {
   background: var(--primary-light);
   color: var(--bg-primary);
-} 
+}
+
+/* Main Layout Padding for Fixed Navigation */
+.main-layout {
+  padding-top: 65px;
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    padding-top: 70px; /* Slightly smaller for mobile if needed */
+  }
+}
