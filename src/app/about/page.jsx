@@ -1,6 +1,10 @@
 "use client"
 
 import styles from '@/styles/About.module.scss'
+import { 
+  FaTint, FaBolt, FaWater, FaSearch, FaBalanceScale, FaRecycle, 
+  FaUserTie, FaFlask, FaHardHat, FaGem, FaGlobe, FaHandshake 
+} from 'react-icons/fa'
 
 export default function About() {
   return (
@@ -17,7 +21,9 @@ export default function About() {
       <section className={styles.mainContent}>
         <div className={styles.contentGrid}>
           <div className={styles.contentText}>
-            <div className={styles.sectionIcon}>💧</div>
+            <div className={styles.sectionIcon}>
+              <FaTint />
+            </div>
             <h2>Our Mission</h2>
             <p>We&apos;re dedicated to providing the purest water for your health and well-being. Our mission is to deliver premium quality water that promotes health and sustainability while maintaining the highest standards of purity and service.</p>
             <div className={styles.missionStats}>
@@ -39,14 +45,16 @@ export default function About() {
 
         <div className={styles.contentGrid}>
           <div className={styles.contentText}>
-            <div className={styles.sectionIcon}>⚡</div>
+            <div className={styles.sectionIcon}>
+              <FaBolt />
+            </div>
             <h2>Our Process</h2>
             <p>Every drop of Ice Water goes through a rigorous purification process while maintaining its natural mineral balance. We source our water from protected mountain springs and use sustainable practices throughout our production.</p>
             <ul className={styles.processList}>
-              <li><span className={styles.processIcon}>🌊</span> Natural Spring Sourcing</li>
-              <li><span className={styles.processIcon}>🔍</span> Advanced Filtration</li>
-              <li><span className={styles.processIcon}>⚖️</span> Mineral Balance Control</li>
-              <li><span className={styles.processIcon}>♻️</span> Sustainable Packaging</li>
+              <li><span className={styles.processIcon}><FaWater /></span> Natural Spring Sourcing</li>
+              <li><span className={styles.processIcon}><FaSearch /></span> Advanced Filtration</li>
+              <li><span className={styles.processIcon}><FaBalanceScale /></span> Mineral Balance Control</li>
+              <li><span className={styles.processIcon}><FaRecycle /></span> Sustainable Packaging</li>
             </ul>
           </div>
         </div>
@@ -56,7 +64,9 @@ export default function About() {
           <h2>Our Team</h2>
           <div className={styles.teamGrid}>
             <div className={styles.teamMember}>
-              <div className={styles.memberIcon}>👨‍💼</div>
+              <div className={styles.memberIcon}>
+                <FaUserTie />
+              </div>
               <h3>John Smith</h3>
               <p>Founder & CEO</p>
               <div className={styles.memberBio}>
@@ -64,7 +74,9 @@ export default function About() {
               </div>
             </div>
             <div className={styles.teamMember}>
-              <div className={styles.memberIcon}>👩‍🔬</div>
+              <div className={styles.memberIcon}>
+                <FaFlask />
+              </div>
               <h3>Sarah Johnson</h3>
               <p>Quality Control Director</p>
               <div className={styles.memberBio}>
@@ -72,7 +84,9 @@ export default function About() {
               </div>
             </div>
             <div className={styles.teamMember}>
-              <div className={styles.memberIcon}>👨‍🏭</div>
+              <div className={styles.memberIcon}>
+                <FaHardHat />
+              </div>
               <h3>Michael Brown</h3>
               <p>Production Manager</p>
               <div className={styles.memberBio}>
@@ -87,17 +101,23 @@ export default function About() {
           <h2>Our Core Values</h2>
           <div className={styles.valuesGrid}>
             <div className={styles.valueCard}>
-              <div className={styles.valueIcon}>💎</div>
+              <div className={styles.valueIcon}>
+                <FaGem />
+              </div>
               <h3>Quality</h3>
               <p>We never compromise on the quality of our water, ensuring purity in every drop.</p>
             </div>
             <div className={styles.valueCard}>
-              <div className={styles.valueIcon}>🌍</div>
+              <div className={styles.valueIcon}>
+                <FaGlobe />
+              </div>
               <h3>Sustainability</h3>
               <p>We&apos;re committed to protecting our planet through eco-friendly practices.</p>
             </div>
             <div className={styles.valueCard}>
-              <div className={styles.valueIcon}>🤝</div>
+              <div className={styles.valueIcon}>
+                <FaHandshake />
+              </div>
               <h3>Integrity</h3>
               <p>We maintain transparency and honesty in all our business practices.</p>
             </div>

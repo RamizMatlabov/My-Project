@@ -3,6 +3,10 @@
 import styles from '@/styles/Contact.module.scss'
 import { useRef } from 'react'
 import emailjs from '@emailjs/browser'
+import { 
+  FaEnvelope, FaMobileAlt, FaPhone, FaMapMarkerAlt, 
+  FaMapMarkedAlt, FaFacebook, FaInstagram, FaTwitter, FaClock 
+} from 'react-icons/fa'
 
 export default function Contact() {
   const from = useRef()
@@ -35,34 +39,34 @@ export default function Contact() {
           <div className={styles.contactInfo}>
             <div className={styles.infoCard}>
               <div className={styles.iconWrapper}>
-                <span className={styles.contactIcon}>📧</span>
+                <span className={styles.contactIcon}><FaEnvelope /></span>
               </div>
               <h3 className={styles.cardTitle}>Email</h3>
               <p className={styles.cardText}>info@icewater.com</p>
               <a href="mailto:info@icewater.com" className={styles.contactLink}>
-                <span className={styles.linkIcon}>✉️</span>
+                <span className={styles.linkIcon}><FaEnvelope /></span>
                 Send us a message
               </a>
             </div>
             <div className={styles.infoCard}>
               <div className={styles.iconWrapper}>
-                <span className={styles.contactIcon}>📱</span>
+                <span className={styles.contactIcon}><FaMobileAlt /></span>
               </div>
               <h3 className={styles.cardTitle}>Phone</h3>
               <p className={styles.cardText}>+1 (555) 123-4567</p>
               <a href="tel:+15551234567" className={styles.contactLink}>
-                <span className={styles.linkIcon}>📞</span>
+                <span className={styles.linkIcon}><FaPhone /></span>
                 Call us now
               </a>
             </div>
             <div className={styles.infoCard}>
               <div className={styles.iconWrapper}>
-                <span className={styles.contactIcon}>📍</span>
+                <span className={styles.contactIcon}><FaMapMarkerAlt /></span>
               </div>
               <h3 className={styles.cardTitle}>Address</h3>
               <p className={styles.cardText}>123 Ice Street, Water City, WC 12345</p>
               <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
-                <span className={styles.linkIcon}>🗺️</span>
+                <span className={styles.linkIcon}><FaMapMarkedAlt /></span>
                 Get directions
               </a>
             </div>
@@ -91,15 +95,15 @@ export default function Contact() {
           <h2 className={styles.sectionTitle}>Follow Us</h2>
           <div className={styles.socialGrid}>
             <a href="#" className={styles.socialLink}>
-              <span className={styles.socialIcon}>📘</span>
+              <span className={styles.socialIcon}><FaFacebook /></span>
               <span className={styles.socialLabel}>Facebook</span>
             </a>
             <a href="#" className={styles.socialLink}>
-              <span className={styles.socialIcon}>📸</span>
+              <span className={styles.socialIcon}><FaInstagram /></span>
               <span className={styles.socialLabel}>Instagram</span>
             </a>
             <a href="#" className={styles.socialLink}>
-              <span className={styles.socialIcon}>🐦</span>
+              <span className={styles.socialIcon}><FaTwitter /></span>
               <span className={styles.socialLabel}>Twitter</span>
             </a>
           </div>
@@ -110,21 +114,21 @@ export default function Contact() {
           <h2 className={styles.sectionTitle}>Business Hours</h2>
           <div className={styles.hoursGrid}>
             <div className={styles.hoursCard}>
-              <span className={styles.hoursIcon}>⏰</span>
+              <span className={styles.hoursIcon}><FaClock /></span>
               <div className={styles.hoursContent}>
                 <h3 className={styles.cardTitle}>Monday - Friday</h3>
                 <p className={styles.cardText}>9:00 AM - 6:00 PM</p>
               </div>
             </div>
             <div className={styles.hoursCard}>
-              <span className={styles.hoursIcon}>⏰</span>
+              <span className={styles.hoursIcon}><FaClock /></span>
               <div className={styles.hoursContent}>
                 <h3 className={styles.cardTitle}>Saturday</h3>
                 <p className={styles.cardText}>10:00 AM - 4:00 PM</p>
               </div>
             </div>
             <div className={styles.hoursCard}>
-              <span className={styles.hoursIcon}>⏰</span>
+              <span className={styles.hoursIcon}><FaClock /></span>
               <div className={styles.hoursContent}>
                 <h3 className={styles.cardTitle}>Sunday</h3>
                 <p className={styles.cardText}>Closed</p>

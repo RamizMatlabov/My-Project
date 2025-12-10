@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import styles from './page.module.scss'
+import { FaTint, FaTruck, FaRecycle, FaStar } from 'react-icons/fa'
 
 export default function Home() {
   return (
@@ -32,22 +33,30 @@ export default function Home() {
         <h2 className={styles.sectionTitle}>Why Choose Us</h2>
         <div className={styles.featureGrid}>
           <div className={styles.featureCard}>
-            <div className={styles.featureIcon}>💧</div>
+            <div className={styles.featureIcon}>
+              <FaTint />
+            </div>
             <h3>Pure & Natural</h3>
             <p>Sourced from natural springs and purified to perfection</p>
           </div>
           <div className={styles.featureCard}>
-            <div className={styles.featureIcon}>🚚</div>
+            <div className={styles.featureIcon}>
+              <FaTruck />
+            </div>
             <h3>Fast Delivery</h3>
             <p>Regular deliveries to your home or office</p>
           </div>
           <div className={styles.featureCard}>
-            <div className={styles.featureIcon}>♻️</div>
+            <div className={styles.featureIcon}>
+              <FaRecycle />
+            </div>
             <h3>Eco-Friendly</h3>
             <p>Sustainable packaging and recycling programs</p>
           </div>
           <div className={styles.featureCard}>
-            <div className={styles.featureIcon}>⭐</div>
+            <div className={styles.featureIcon}>
+              <FaStar />
+            </div>
             <h3>Premium Quality</h3>
             <p>Rigorous quality control and testing</p>
           </div>
@@ -56,3 +65,4 @@ export default function Home() {
     </div>
   )
 }
+

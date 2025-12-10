@@ -99,17 +99,18 @@
 
   li {
     color: var(--text-secondary);
-    padding-left: 1.5rem;
+    padding-left: 0;
     position: relative;
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-    &::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: var(--primary);
-      font-weight: bold;
-    }
+  .checkIcon {
+    color: var(--primary);
+    display: flex;
+    align-items: center;
   }
 }
 

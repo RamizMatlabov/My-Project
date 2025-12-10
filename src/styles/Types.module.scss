@@ -144,12 +144,13 @@
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
+  }
 
-    &::before {
-      content: '✓';
-      color: #00a8ff;
-      margin-right: 0.5rem;
-    }
+  .checkIcon {
+    color: #00a8ff;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
   }
 }
 

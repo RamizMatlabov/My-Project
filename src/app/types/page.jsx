@@ -3,6 +3,7 @@
 import styles from '@/styles/Types.module.scss'
 import Image from 'next/image'
 import { useState } from 'react'
+import { FaCheck } from 'react-icons/fa'
 
 export default function Types() {
   const [activeTab, setActiveTab] = useState('still')
@@ -144,7 +145,10 @@ export default function Types() {
                 <p className={styles.typeDescription}>{waterType.description}</p>
                 <ul className={styles.benefits}>
                   {waterType.benefits.map((benefit, idx) => (
-                    <li key={idx}>{benefit}</li>
+                    <li key={idx}>
+                      <span className={styles.checkIcon}><FaCheck /></span>
+                      {benefit}
+                    </li>
                   ))}
                 </ul>
               </div>

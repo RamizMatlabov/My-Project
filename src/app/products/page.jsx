@@ -2,6 +2,7 @@
 
 import styles from './products.module.scss'
 import Image from 'next/image'
+import { FaCheck } from 'react-icons/fa'
 
 const products = [
   {
@@ -75,7 +76,10 @@ export default function Products() {
               <p className={styles.description}>{product.description}</p>
               <ul className={styles.features}>
                 {product.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
+                  <li key={index}>
+                    <span className={styles.checkIcon}><FaCheck /></span>
+                    {feature}
+                  </li>
                 ))}
               </ul>
               <button className={styles.orderButton}>Order Now</button>
