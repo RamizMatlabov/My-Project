@@ -5,7 +5,7 @@ import { auth } from '../../firebase/config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import styles from './register.module.css'
+import styles from './register.module.scss'
 
 export default function Register() {
   const [name, setName] = useState('')
@@ -32,9 +32,18 @@ export default function Register() {
       await updateProfile(userCredential.user, {
         displayName: name
       })
-      router.push('/') // Redirect to home page after successful registration
+      router.push('/profile') // Redirect to profile page after successful registration
     } catch (error) {
-      setError(error.message)
+      // console.error(error)
+      if (error.code === 'auth/email-already-in-use') {
+        setError('This email is already in use. Please use a different email or sign in.')
+      } else if (error.code === 'auth/weak-password') {
+        setError('Password should be at least 6 characters.')
+      } else if (error.code === 'auth/invalid-email') {
+        setError('Invalid email address.')
+      } else {
+        setError('Failed to create account. Please try again.')
+      }
     } finally {
       setLoading(false)
     }

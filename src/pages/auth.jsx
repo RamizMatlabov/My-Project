@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { auth } from '../firebase/config'
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { useRouter } from 'next/router'
-import styles from '../styles/Auth.module.css'
+import styles from '../styles/Auth.module.scss'
 
 export default function Auth() {
   const [email, setEmail] = useState('')

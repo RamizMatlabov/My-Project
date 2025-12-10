@@ -5,7 +5,7 @@ import { auth } from '../../firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import styles from './login.module.css'
+import styles from './login.module.scss'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -21,9 +21,16 @@ export default function Login() {
     
     try {
       await signInWithEmailAndPassword(auth, email, password)
-      router.push('/') // Redirect to home page after successful login
+      router.push('/profile') // Redirect to profile page after successful login
     } catch (error) {
-      setError(error.message)
+      // console.error(error)
+      if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+        setError('Invalid email or password.')
+      } else if (error.code === 'auth/invalid-email') {
+        setError('Invalid email address.')
+      } else {
+        setError('Failed to sign in. Please try again.')
+      }
     } finally {
       setLoading(false)
     }

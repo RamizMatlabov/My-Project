@@ -1,11 +1,21 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { auth } from '../../firebase/config'
+import { onAuthStateChanged } from 'firebase/auth'
 import styles from './Navigation.module.scss'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user)
+    })
+    return () => unsubscribe()
+  }, [])
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -33,14 +43,22 @@ export default function Navigation() {
         <Link href="/products" onClick={() => setIsOpen(false)}>Products</Link>
         <Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
         <div className={styles.authButtons}>
-          <Link href="/login" className={styles.loginButton} onClick={() => setIsOpen(false)}>
-            Login
-          </Link>
-          <Link href="/register" className={styles.registerButton} onClick={() => setIsOpen(false)}>
-            Register
-          </Link>
+          {user ? (
+            <Link href="/profile" className={styles.registerButton} onClick={() => setIsOpen(false)}>
+              Profile
+            </Link>
+          ) : (
+            <>
+              <Link href="/login" className={styles.loginButton} onClick={() => setIsOpen(false)}>
+                Login
+              </Link>
+              <Link href="/register" className={styles.registerButton} onClick={() => setIsOpen(false)}>
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
   )
-} 
+}

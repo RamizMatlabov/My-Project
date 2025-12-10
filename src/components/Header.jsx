@@ -1,10 +1,22 @@
 "use client"
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { auth } from '../firebase/config'
+import { onAuthStateChanged } from 'firebase/auth'
 import styles from '../styles/Header.module.scss'
 
 export default function Header() {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user)
+    })
+    return () => unsubscribe()
+  }, [])
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -31,14 +43,22 @@ export default function Header() {
           </Link>
         </nav>
         <div className={styles.authButtons}>
-          <Link href="/login" className={styles.loginButton}>
-            Login
-          </Link>
-          <Link href="/register" className={styles.registerButton}>
-            Register
-          </Link>
+          {user ? (
+            <Link href="/profile" className={styles.registerButton}>
+              Profile
+            </Link>
+          ) : (
+            <>
+              <Link href="/login" className={styles.loginButton}>
+                Login
+              </Link>
+              <Link href="/register" className={styles.registerButton}>
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
   )
-} 
+}
