@@ -1,7 +1,8 @@
 .footer {
-  background-color: #f9fafb;
+  background-color: #2f3640;
   padding: 4rem 0 2rem;
   margin-top: 4rem;
+  color: #fff;
 }
 
 .container {
@@ -26,12 +27,12 @@
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #1f2937;
+    color: #fff;
   }
 }
 
 .text {
-  color: #4b5563;
+  color: #e5e7eb;
   line-height: 1.5;
 }
 
@@ -42,27 +43,27 @@
 
   li {
     margin-bottom: 0.5rem;
-    color: #4b5563;
+    color: #e5e7eb;
   }
 }
 
 .link {
-  color: #4b5563;
+  color: #e5e7eb;
   transition: color 0.2s;
 
   &:hover {
-    color: #2563eb;
+    color: #00a8ff;
   }
 }
 
 .bottom {
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #4b5563;
   padding-top: 2rem;
   text-align: center;
 }
 
 .copyright {
-  color: #6b7280;
+  color: #9ca3af;
   font-size: 0.875rem;
 }
 
@@ -144,7 +145,6 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
-
 .legalLinks {
   display: flex;
   gap: 1rem;

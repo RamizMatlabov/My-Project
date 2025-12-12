@@ -260,29 +260,31 @@ a.secondary {
 }
 
 .waterDrop {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(135deg, #4299e1 0%, #63b3ed 100%);
-  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(0, 168, 255, 0.4));
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; 
+  animation: morph 8s ease-in-out infinite;
+  box-shadow: inset 10px 10px 20px rgba(255, 255, 255, 0.5), 
+              10px 10px 20px rgba(0, 168, 255, 0.2);
   position: relative;
-  box-shadow: 
-    0 0 0 20px rgba(66, 153, 225, 0.1),
-    0 0 0 40px rgba(66, 153, 225, 0.05);
-  animation: float 6s ease-in-out infinite;
-}
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+  }
 
-.waterDrop::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, #4299e1 0%, #63b3ed 100%);
-  border-radius: 50%;
-  filter: blur(10px);
-  opacity: 0.5;
+  @media (max-width: 768px) {
+    width: 280px;
+    height: 280px;
+  }
 }
 
 @keyframes float {
