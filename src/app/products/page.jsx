@@ -4,48 +4,39 @@ import styles from './products.module.scss'
 import Image from 'next/image'
 import { FaCheck } from 'react-icons/fa'
 
+const formatPrice = (product) => {
+  if (product.currency === 'USD') return `$${product.price}`
+  if (product.currency === 'UZS') return `${product.price} сум`
+  return String(product.price)
+}
+
 const products = [
   {
     id: 1,
-    name: 'Spring Water Bottle',
-    size: '500ml',
-    price: 1.99,
-    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=800&auto=format&fit=crop&q=60',
-    description: 'Pure spring water in a convenient 500ml bottle. Perfect for on-the-go hydration.',
-    features: [
-      'Natural spring water',
-      'BPA-free bottle',
-      'Recyclable packaging',
-      'Perfect for daily use'
-    ]
+    name: 'Питьевая вода 5л',
+    price: 7000,
+    currency: 'UZS',
+    image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800&auto=format&fit=crop&q=60',
+    description: 'Питьевая вода для дома и офиса в удобной таре 5 литров.',
+    features: ['Чистая питьевая вода', 'Подходит для ежедневного употребления', 'Удобно хранить и использовать']
   },
   {
     id: 2,
-    name: 'Mineral Water Jug',
-    size: '5L',
-    price: 4.99,
-    image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800&auto=format&fit=crop&q=60',
-    description: 'Rich mineral water in a family-sized jug. Ideal for home and office use.',
-    features: [
-      'High mineral content',
-      'Durable container',
-      'Easy to pour',
-      'Great value'
-    ]
+    name: 'Питьевая вода 10л',
+    price: 13000,
+    currency: 'UZS',
+    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=800&auto=format&fit=crop&q=60',
+    description: 'Оптимальный объём для семьи — 10 литров питьевой воды.',
+    features: ['Чистая питьевая вода', 'Выгодный объём', 'Подходит для дома и офиса']
   },
   {
     id: 3,
-    name: 'Purified Water Pack',
-    size: '12 x 1L',
-    price: 19.99,
-    image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800&auto=format&fit=crop&q=60',
-    description: 'Bulk pack of purified water bottles. Perfect for families and small businesses.',
-    features: [
-      'Ultra-purified water',
-      'Bulk savings',
-      'Easy storage',
-      'Long shelf life'
-    ]
+    name: 'Питьевая вода 19л',
+    price: 20000,
+    currency: 'UZS',
+    image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&auto=format&fit=crop&q=60',
+    description: 'Большой объём 19 литров — удобно для кулеров и офиса.',
+    features: ['Чистая питьевая вода', 'Идеально для кулера', 'Подходит для офиса и дома']
   }
 ]
 
@@ -71,8 +62,8 @@ export default function Products() {
             </div>
             <div className={styles.content}>
               <h2>{product.name}</h2>
-              <p className={styles.size}>{product.size}</p>
-              <p className={styles.price}>${product.price}</p>
+              {product.size ? <p className={styles.size}>{product.size}</p> : null}
+              <p className={styles.price}>{formatPrice(product)}</p>
               <p className={styles.description}>{product.description}</p>
               <ul className={styles.features}>
                 {product.features.map((feature, index) => (
