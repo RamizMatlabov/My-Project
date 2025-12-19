@@ -1,10 +1,11 @@
 "use client"
 
-import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import styles from './Navigation.module.scss'
 import { auth } from '../../firebase/config'
 import { onAuthStateChanged } from 'firebase/auth'
-import styles from './Navigation.module.scss'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,7 +25,16 @@ export default function Navigation() {
   return (
     <nav className={styles.navigation}>
       <div className={styles.logo}>
-        <Link href="/">Ice Water</Link>
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            alt="Ice Water"
+            width={40}
+            height={40}
+            className={styles.logoImage}
+          />
+          <span>Ice Water</span>
+        </Link>
       </div>
 
       <button 
