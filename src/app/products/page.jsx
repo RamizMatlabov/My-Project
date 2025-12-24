@@ -16,7 +16,7 @@ const products = [
     name: 'Питьевая вода 5л',
     price: 7000,
     currency: 'UZS',
-    image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800&auto=format&fit=crop&q=60',
+    image: '/5L_water.png',
     description: 'Питьевая вода для дома и офиса в удобной таре 5 литров.',
     features: ['Чистая питьевая вода', 'Подходит для ежедневного употребления', 'Удобно хранить и использовать']
   },
@@ -25,7 +25,7 @@ const products = [
     name: 'Питьевая вода 10л',
     price: 13000,
     currency: 'UZS',
-    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=800&auto=format&fit=crop&q=60',
+    image: '/10L_water.png',
     description: 'Оптимальный объём для семьи — 10 литров питьевой воды.',
     features: ['Чистая питьевая вода', 'Выгодный объём', 'Подходит для дома и офиса']
   },
@@ -34,7 +34,7 @@ const products = [
     name: 'Питьевая вода 19л',
     price: 20000,
     currency: 'UZS',
-    image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=800&auto=format&fit=crop&q=60',
+    image: '/19L_water.png',
     description: 'Большой объём 19 литров — удобно для кулеров и офиса.',
     features: ['Чистая питьевая вода', 'Идеально для кулера', 'Подходит для офиса и дома']
   }
@@ -55,8 +55,8 @@ export default function Products() {
               <Image 
                 src={product.image}
                 alt={product.name}
-                width={500}
-                height={300}
+                width={365}
+                height={450}
                 priority
               />
             </div>
