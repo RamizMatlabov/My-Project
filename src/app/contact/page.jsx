@@ -42,8 +42,8 @@ export default function Contact() {
                 <span className={styles.contactIcon}><FaEnvelope /></span>
               </div>
               <h3 className={styles.cardTitle}>Email</h3>
-              <p className={styles.cardText}>info@icewater.com</p>
-              <a href="mailto:info@icewater.com" className={styles.contactLink}>
+              <p className={styles.cardText}>ramizmatlabov923@gmail.com</p>
+              <a href="mailto:ramizmatlabov923@gmail.com" className={styles.contactLink}>
                 <span className={styles.linkIcon}><FaEnvelope /></span>
                 Send us a message
               </a>
@@ -53,8 +53,8 @@ export default function Contact() {
                 <span className={styles.contactIcon}><FaMobileAlt /></span>
               </div>
               <h3 className={styles.cardTitle}>Phone</h3>
-              <p className={styles.cardText}>+1 (555) 123-4567</p>
-              <a href="tel:+15551234567" className={styles.contactLink}>
+              <p className={styles.cardText}>+998 (33) 433-44-04</p>
+              <a href="tel:+998334334404" className={styles.contactLink}>
                 <span className={styles.linkIcon}><FaPhone /></span>
                 Call us now
               </a>
@@ -98,7 +98,7 @@ export default function Contact() {
               <span className={styles.socialIcon}><FaFacebook /></span>
               <span className={styles.socialLabel}>Facebook</span>
             </a>
-            <a href="#" className={styles.socialLink}>
+            <a href="https://www.instagram.com/ramiz_matlabov/" className={styles.socialLink}>
               <span className={styles.socialIcon}><FaInstagram /></span>
               <span className={styles.socialLabel}>Instagram</span>
             </a>
