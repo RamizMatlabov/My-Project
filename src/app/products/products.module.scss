@@ -49,17 +49,23 @@
   width: 100%;
   height: 380px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.imageContainer img,
 .image {
-  width: 100%;
+  width: auto;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  object-fit: contain;
   transition: transform 0.3s ease;
+}
 
-  &:hover {
-    transform: scale(1.05);
-  }
+.imageContainer:hover img,
+.imageContainer:hover .image {
+  transform: scale(1.05);
 }
 
 .content {
@@ -151,5 +157,21 @@
 
   .products {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .imageContainer {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .imageContainer img,
+  .imageContainer .image {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
   }
 } 

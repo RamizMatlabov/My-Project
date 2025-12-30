@@ -85,6 +85,8 @@ export default function Products() {
                 width={365}
                 height={450}
                 priority
+                className={styles.image}
+                style={{ objectFit: 'contain' }}
               />
             </div>
             <div className={styles.content}>
