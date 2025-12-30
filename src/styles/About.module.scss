@@ -128,48 +128,6 @@
   }
 }
 
-.teamSection {
-  margin-top: 60px;
-  text-align: center;
-
-  h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #2c3e50;
-  }
-}
-
-.teamGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 2rem;
-}
-
-.teamMember {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-}
-
-.memberIcon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.memberBio {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  color: #7f8c8d;
-  line-height: 1.5;
-}
-
 .valuesSection {
   margin-top: 60px;
   text-align: center;

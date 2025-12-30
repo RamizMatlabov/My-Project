@@ -59,43 +59,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Team Section */}
-        <section className={styles.teamSection}>
-          <h2>Our Team</h2>
-          <div className={styles.teamGrid}>
-            <div className={styles.teamMember}>
-              <div className={styles.memberIcon}>
-                <FaUserTie />
-              </div>
-              <h3>John Smith</h3>
-              <p>Founder & CEO</p>
-              <div className={styles.memberBio}>
-                <p>With over 20 years of experience in the water industry, John leads our company with vision and dedication to quality.</p>
-              </div>
-            </div>
-            <div className={styles.teamMember}>
-              <div className={styles.memberIcon}>
-                <FaFlask />
-              </div>
-              <h3>Sarah Johnson</h3>
-              <p>Quality Control Director</p>
-              <div className={styles.memberBio}>
-                <p>Sarah ensures that every bottle of Ice Water meets our rigorous quality standards through her expertise in water chemistry.</p>
-              </div>
-            </div>
-            <div className={styles.teamMember}>
-              <div className={styles.memberIcon}>
-                <FaHardHat />
-              </div>
-              <h3>Michael Brown</h3>
-              <p>Production Manager</p>
-              <div className={styles.memberBio}>
-                <p>Michael oversees our sustainable production processes, ensuring efficiency while maintaining our environmental commitments.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Values Section */}
         <section className={styles.valuesSection}>
           <h2>Our Core Values</h2>
