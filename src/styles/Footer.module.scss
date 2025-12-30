@@ -31,6 +31,29 @@
   }
 }
 
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.logoImage {
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
 .text {
   color: #e5e7eb;
   line-height: 1.5;

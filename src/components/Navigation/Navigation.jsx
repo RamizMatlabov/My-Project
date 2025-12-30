@@ -29,8 +29,8 @@ export default function Navigation() {
           <Image
             src="/logo.png"
             alt="Ice Water"
-            width={40}
-            height={40}
+            width={50}
+            height={50}
             className={styles.logoImage}
           />
           <span>Ice Water</span>

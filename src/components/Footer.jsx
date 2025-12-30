@@ -1,15 +1,32 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import styles from '../styles/Footer.module.scss'
 
 export default function Footer() {
+  const [currentYear, setCurrentYear] = useState(2024)
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear())
+  }, [])
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.grid}>
           <div className={styles.column}>
-            <h3 className={styles.title}>About Us</h3>
+            <Link href="/" className={styles.logoLink}>
+              <Image
+                src="/logo.png"
+                alt="Ice Water Logo"
+                width={50}
+                height={50}
+                className={styles.logoImage}
+              />
+              <span className={styles.logoText}>Ice Water</span>
+            </Link>
             <p className={styles.text}>
               We provide the purest water sourced from natural springs, ensuring quality and sustainability.
             </p>
@@ -45,7 +62,7 @@ export default function Footer() {
         </div>
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {new Date().getFullYear()} Ice Water. All rights reserved.
+            © {currentYear} Ice Water. All rights reserved.
           </p>
         </div>
       </div>
