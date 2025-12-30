@@ -46,6 +46,31 @@ const formatTotalPrice = (total, currency = 'UZS') => {
   return String(total)
 }
 
+const formatPhoneNumber = (value) => {
+  // Удаляем все нецифровые символы
+  const numbers = value.replace(/\D/g, '')
+  
+  // Если пусто, возвращаем пустую строку
+  if (numbers.length === 0) return ''
+  
+  // Если номер начинается с 998, используем его как есть
+  // Если начинается с другого, добавляем 998 в начало
+  let phoneNumbers = numbers
+  if (!phoneNumbers.startsWith('998')) {
+    phoneNumbers = '998' + phoneNumbers
+  }
+  
+  // Ограничиваем до 12 цифр (998 + 9 цифр)
+  const limited = phoneNumbers.slice(0, 12)
+  
+  // Форматируем: +998 (XX) XXX-XX-XX
+  if (limited.length <= 3) return `+${limited}`
+  if (limited.length <= 5) return `+998 (${limited.slice(3)}`
+  if (limited.length <= 8) return `+998 (${limited.slice(3, 5)}) ${limited.slice(5)}`
+  if (limited.length <= 10) return `+998 (${limited.slice(3, 5)}) ${limited.slice(5, 8)}-${limited.slice(8)}`
+  return `+998 (${limited.slice(3, 5)}) ${limited.slice(5, 8)}-${limited.slice(8, 10)}-${limited.slice(10)}`
+}
+
 export default function Order() {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -96,10 +121,20 @@ export default function Order() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    
+    // Для телефона форматируем номер
+    if (name === 'phone') {
+      const formatted = formatPhoneNumber(value)
+      setFormData(prev => ({
+        ...prev,
+        [name]: formatted
+      }))
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    }
   }
 
   const handleQuantityChange = (productId, delta) => {
@@ -310,7 +345,7 @@ export default function Order() {
 
           <div className={styles.formGroup}>
             <label htmlFor="phone">
-              <FaPhone /> Телефон *
+              <FaPhone data-phone-icon /> Телефон *
             </label>
             <input
               type="tel"
@@ -320,6 +355,7 @@ export default function Order() {
               onChange={handleInputChange}
               required
               placeholder="+998 (__) ___-__-__"
+              maxLength={19}
             />
           </div>
 
