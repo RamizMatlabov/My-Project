@@ -1,8 +1,14 @@
 "use client"
 
+import { useState, useEffect } from 'react'
 import styles from './products.module.scss'
 import Image from 'next/image'
 import { FaCheck } from 'react-icons/fa'
+import { useRouter } from 'next/navigation'
+import { auth } from '@/firebase/config'
+import { onAuthStateChanged } from 'firebase/auth'
+import Modal from '@/components/Modal'
+import Link from 'next/link'
 
 const formatPrice = (product) => {
   if (product.currency === 'USD') return `$${product.price}`
@@ -41,6 +47,27 @@ const products = [
 ]
 
 export default function Products() {
+  const router = useRouter()
+  const [user, setUser] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [showModal, setShowModal] = useState(false)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user)
+      setIsLoading(false)
+    })
+    return () => unsubscribe()
+  }, [])
+
+  const handleOrderClick = (productId) => {
+    if (user) {
+      router.push(`/order?productId=${productId}`)
+    } else {
+      setShowModal(true)
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -73,11 +100,73 @@ export default function Products() {
                   </li>
                 ))}
               </ul>
-              <button className={styles.orderButton}>Order Now</button>
+              <button 
+                className={styles.orderButton}
+                onClick={() => handleOrderClick(product.id)}
+              >
+                Order Now
+              </button>
             </div>
           </div>
         ))}
       </div>
+
+      <Modal 
+        isOpen={showModal} 
+        onClose={() => setShowModal(false)}
+        title="Требуется регистрация"
+      >
+        <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+          <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', color: 'var(--text-primary)' }}>
+            Для оформления заказа необходимо войти в систему или зарегистрироваться.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link 
+              href="/login" 
+              style={{
+                padding: '0.75rem 1.5rem',
+                backgroundColor: 'var(--primary)',
+                color: 'white',
+                textDecoration: 'none',
+                borderRadius: '8px',
+                fontWeight: '600',
+                transition: 'background-color 0.3s',
+                display: 'inline-block'
+              }}
+              onClick={() => setShowModal(false)}
+              onMouseEnter={(e) => e.target.style.backgroundColor = 'var(--primary-dark)'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'var(--primary)'}
+            >
+              Войти
+            </Link>
+            <Link 
+              href="/register" 
+              style={{
+                padding: '0.75rem 1.5rem',
+                backgroundColor: 'transparent',
+                color: 'var(--primary)',
+                textDecoration: 'none',
+                borderRadius: '8px',
+                fontWeight: '600',
+                border: '2px solid var(--primary)',
+                transition: 'all 0.3s',
+                display: 'inline-block'
+              }}
+              onClick={() => setShowModal(false)}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = 'var(--primary)'
+                e.target.style.color = 'white'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = 'transparent'
+                e.target.style.color = 'var(--primary)'
+              }}
+            >
+              Зарегистрироваться
+            </Link>
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 } 
