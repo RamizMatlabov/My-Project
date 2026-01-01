@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import styles from './order.module.scss'
@@ -71,7 +71,7 @@ const formatPhoneNumber = (value) => {
   return `+998 (${limited.slice(3, 5)}) ${limited.slice(5, 8)}-${limited.slice(8, 10)}-${limited.slice(10)}`
 }
 
-export default function Order() {
+function OrderContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const productIdParam = searchParams.get('productId')
@@ -444,6 +444,18 @@ export default function Order() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function Order() {
+  return (
+    <Suspense fallback={
+      <div className={styles.container}>
+        <div className={styles.loading}>Загрузка...</div>
+      </div>
+    }>
+      <OrderContent />
+    </Suspense>
   )
 }
 
