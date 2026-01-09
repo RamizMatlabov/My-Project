@@ -1,142 +1,236 @@
 "use client"
 
 import styles from '@/styles/Contact.module.scss'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { 
-  FaEnvelope, FaMobileAlt, FaPhone, FaMapMarkerAlt, 
-  FaMapMarkedAlt, FaFacebook, FaInstagram, FaTwitter, FaClock 
+  FaEnvelope, FaPhone, FaMapMarkerAlt, 
+  FaFacebook, FaInstagram, FaTwitter, 
+  FaClock, FaPaperPlane, FaCheckCircle
 } from 'react-icons/fa'
 
 export default function Contact() {
-  const from = useRef()
-  function submit(e) {
+  const formRef = useRef()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
+
+  const submit = async (e) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus(null)
 
-    emailjs.sendForm('service_qorrope', 'template_otc69hd', from.current, '5d_FVNKGmUFzETuCP')
-      .then((result) => {
-        alert("message sent" + result.text)
-      }, (error) => {
-        alert("An error occurred, Please try again" + error.text)
-      })
-
-    e.target.reset()
+    try {
+      await emailjs.sendForm(
+        'service_qorrope', 
+        'template_otc69hd', 
+        formRef.current, 
+        '5d_FVNKGmUFzETuCP'
+      )
+      setSubmitStatus('success')
+      e.target.reset()
+    } catch (error) {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+      setTimeout(() => setSubmitStatus(null), 5000)
+    }
   }
 
   return (
-    <div className={styles.container}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1>Contact Us</h1>
-          <p className={styles.heroSubtitle}>We&apos;d love to hear from you</p>
-        </div>
-      </section>
+    <div className={styles.wrapper}>
+      {/* Header Section */}
+      <div className={styles.header}>
+        <h1>Contact Us</h1>
+        <p>
+          Have a question or want to work together? We&apos;d love to hear from you.
+          Send us a message and we&apos;ll respond as soon as possible.
+        </p>
+      </div>
 
-      {/* Contact Information */}
-      <section className={styles.contactSection}>
-        <div className={styles.contactGrid}>
-          <div className={styles.contactInfo}>
-            <div className={styles.infoCard}>
-              <div className={styles.iconWrapper}>
-                <span className={styles.contactIcon}><FaEnvelope /></span>
+      {/* Main Content */}
+      <div className={styles.container}>
+        <div className={styles.contentGrid}>
+          {/* Contact Information Cards */}
+          <div className={styles.infoSection}>
+            <h2 className={styles.sectionTitle}>Contact Information</h2>
+
+            <div className={styles.infoCards}>
+              <div className={styles.infoCard}>
+                <div className={styles.cardIcon}>
+                  <FaEnvelope />
+                </div>
+                <h3 className={styles.cardTitle}>Email</h3>
+                <p className={styles.cardText}>ramizmatlabov923@gmail.com</p>
+                <a 
+                  href="mailto:ramizmatlabov923@gmail.com" 
+                  className={styles.cardLink}
+                >
+                  Send Email <FaPaperPlane />
+                </a>
               </div>
-              <h3 className={styles.cardTitle}>Email</h3>
-              <p className={styles.cardText}>ramizmatlabov923@gmail.com</p>
-              <a href="mailto:ramizmatlabov923@gmail.com" className={styles.contactLink}>
-                <span className={styles.linkIcon}><FaEnvelope /></span>
-                Send us a message
-              </a>
+
+              <div className={styles.infoCard}>
+                <div className={styles.cardIcon}>
+                  <FaPhone />
+                </div>
+                <h3 className={styles.cardTitle}>Phone</h3>
+                <p className={styles.cardText}>+998 (33) 433-44-04</p>
+                <a 
+                  href="tel:+998334334404" 
+                  className={styles.cardLink}
+                >
+                  Call Now <FaPhone />
+                </a>
+              </div>
+
+              <div className={styles.infoCard}>
+                <div className={styles.cardIcon}>
+                  <FaMapMarkerAlt />
+                </div>
+                <h3 className={styles.cardTitle}>Address</h3>
+                <p className={styles.cardText}>123 Ice Street, Water City, WC 12345</p>
+                <a 
+                  href="https://maps.google.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={styles.cardLink}
+                >
+                  Get Directions <FaMapMarkerAlt />
+                </a>
+              </div>
             </div>
-            <div className={styles.infoCard}>
-              <div className={styles.iconWrapper}>
-                <span className={styles.contactIcon}><FaMobileAlt /></span>
+
+            {/* Social Media */}
+            <div className={styles.socialSection}>
+              <h3 className={styles.socialTitle}>Follow Us</h3>
+              <div className={styles.socialLinks}>
+                <a 
+                  href="#" 
+                  className={styles.socialLink}
+                  aria-label="Facebook"
+                >
+                  <FaFacebook />
+                </a>
+                <a 
+                  href="https://www.instagram.com/ramiz_matlabov/" 
+                  className={styles.socialLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram />
+                </a>
+                <a 
+                  href="#" 
+                  className={styles.socialLink}
+                  aria-label="Twitter"
+                >
+                  <FaTwitter />
+                </a>
               </div>
-              <h3 className={styles.cardTitle}>Phone</h3>
-              <p className={styles.cardText}>+998 (33) 433-44-04</p>
-              <a href="tel:+998334334404" className={styles.contactLink}>
-                <span className={styles.linkIcon}><FaPhone /></span>
-                Call us now
-              </a>
             </div>
-            <div className={styles.infoCard}>
-              <div className={styles.iconWrapper}>
-                <span className={styles.contactIcon}><FaMapMarkerAlt /></span>
+          </div>
+
+          {/* Contact Form */}
+          <div className={styles.formSection}>
+            <div className={styles.formCard}>
+              <h2 className={styles.formTitle}>Send us a Message</h2>
+              <p className={styles.formSubtitle}>
+                Fill out the form below and we&apos;ll get back to you within 24 hours.
+              </p>
+
+              <form ref={formRef} onSubmit={submit} className={styles.form}>
+                <div className={styles.formGroup}>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    className={styles.input}
+                    placeholder=" "
+                    required 
+                  />
+                  <label htmlFor="name" className={styles.label}>Your Name</label>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    className={styles.input}
+                    placeholder=" "
+                    required 
+                  />
+                  <label htmlFor="email" className={styles.label}>Email Address</label>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <textarea 
+                    id="message" 
+                    name="message" 
+                    className={styles.textarea}
+                    placeholder=" "
+                    rows="6"
+                    required
+                  ></textarea>
+                  <label htmlFor="message" className={styles.label}>Your Message</label>
+                </div>
+
+                <button 
+                  type="submit" 
+                  className={styles.submitButton}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className={styles.spinner}></span>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message <FaPaperPlane />
+                    </>
+                  )}
+                </button>
+
+                {submitStatus === 'success' && (
+                  <div className={styles.successMessage}>
+                    <FaCheckCircle /> Message sent successfully! We&apos;ll get back to you soon.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className={styles.errorMessage}>
+                    Something went wrong. Please try again later.
+                  </div>
+                )}
+              </form>
+            </div>
+
+            {/* Business Hours */}
+            <div className={styles.hoursSection}>
+              <h3 className={styles.hoursTitle}>
+                <FaClock /> Business Hours
+              </h3>
+              <div className={styles.hoursList}>
+                <div className={styles.hoursItem}>
+                  <span className={styles.hoursDay}>Monday - Friday</span>
+                  <span className={styles.hoursTime}>9:00 AM - 6:00 PM</span>
+                </div>
+                <div className={styles.hoursItem}>
+                  <span className={styles.hoursDay}>Saturday</span>
+                  <span className={styles.hoursTime}>10:00 AM - 4:00 PM</span>
+                </div>
+                <div className={styles.hoursItem}>
+                  <span className={styles.hoursDay}>Sunday</span>
+                  <span className={styles.hoursTime}>Closed</span>
+                </div>
               </div>
-              <h3 className={styles.cardTitle}>Address</h3>
-              <p className={styles.cardText}>123 Ice Street, Water City, WC 12345</p>
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
-                <span className={styles.linkIcon}><FaMapMarkedAlt /></span>
-                Get directions
-              </a>
             </div>
           </div>
         </div>
-
-        {/* Contact Form */}
-        <form ref={from} onSubmit={submit} className={styles.contactForm}>
-          <div className={styles.formGroup}>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" className={styles.submitButton}>Send Message</button>
-        </form>
-
-        {/* Social Media */}
-        <div className={styles.socialSection}>
-          <h2 className={styles.sectionTitle}>Follow Us</h2>
-          <div className={styles.socialGrid}>
-            <a href="#" className={styles.socialLink}>
-              <span className={styles.socialIcon}><FaFacebook /></span>
-              <span className={styles.socialLabel}>Facebook</span>
-            </a>
-            <a href="https://www.instagram.com/ramiz_matlabov/" className={styles.socialLink}>
-              <span className={styles.socialIcon}><FaInstagram /></span>
-              <span className={styles.socialLabel}>Instagram</span>
-            </a>
-            <a href="#" className={styles.socialLink}>
-              <span className={styles.socialIcon}><FaTwitter /></span>
-              <span className={styles.socialLabel}>Twitter</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Business Hours */}
-        <div className={styles.hoursSection}>
-          <h2 className={styles.sectionTitle}>Business Hours</h2>
-          <div className={styles.hoursGrid}>
-            <div className={styles.hoursCard}>
-              <span className={styles.hoursIcon}><FaClock /></span>
-              <div className={styles.hoursContent}>
-                <h3 className={styles.cardTitle}>Monday - Friday</h3>
-                <p className={styles.cardText}>9:00 AM - 6:00 PM</p>
-              </div>
-            </div>
-            <div className={styles.hoursCard}>
-              <span className={styles.hoursIcon}><FaClock /></span>
-              <div className={styles.hoursContent}>
-                <h3 className={styles.cardTitle}>Saturday</h3>
-                <p className={styles.cardText}>10:00 AM - 4:00 PM</p>
-              </div>
-            </div>
-            <div className={styles.hoursCard}>
-              <span className={styles.hoursIcon}><FaClock /></span>
-              <div className={styles.hoursContent}>
-                <h3 className={styles.cardTitle}>Sunday</h3>
-                <p className={styles.cardText}>Closed</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   )
-} 
+}
+
