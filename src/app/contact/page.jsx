@@ -6,13 +6,16 @@ import emailjs from '@emailjs/browser'
 import { 
   FaEnvelope, FaPhone, FaMapMarkerAlt, 
   FaFacebook, FaInstagram, FaTwitter, 
-  FaClock, FaPaperPlane, FaCheckCircle
+  FaClock, FaPaperPlane, FaCheckCircle, FaTelegram
 } from 'react-icons/fa'
 
 export default function Contact() {
   const formRef = useRef()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
 
   const submit = async (e) => {
     e.preventDefault()
@@ -28,6 +31,9 @@ export default function Contact() {
       )
       setSubmitStatus('success')
       e.target.reset()
+      setName('')
+      setEmail('')
+      setMessage('')
     } catch (error) {
       setSubmitStatus('error')
     } finally {
@@ -38,14 +44,16 @@ export default function Contact() {
 
   return (
     <div className={styles.wrapper}>
-      {/* Header Section */}
-      <div className={styles.header}>
-        <h1>Contact Us</h1>
-        <p>
-          Have a question or want to work together? We&apos;d love to hear from you.
-          Send us a message and we&apos;ll respond as soon as possible.
-        </p>
-      </div>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1>Contact Us</h1>
+          <p className={styles.heroSubtitle}>
+            Have a question or want to work together? We&apos;d love to hear from you.
+            Send us a message and we&apos;ll respond as soon as possible.
+          </p>
+        </div>
+      </section>
 
       {/* Main Content */}
       <div className={styles.container}>
@@ -127,6 +135,15 @@ export default function Contact() {
                 >
                   <FaTwitter />
                 </a>
+                <a 
+                  href="https://t.me/MyPureWaterBot" 
+                  className={styles.socialLink}
+                  aria-label="Telegram"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaTelegram />
+                </a>
               </div>
             </div>
           </div>
@@ -147,9 +164,11 @@ export default function Contact() {
                     name="name" 
                     className={styles.input}
                     placeholder=" "
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required 
                   />
-                  <label htmlFor="name" className={styles.label}>Your Name</label>
+                  <label htmlFor="name" className={`${styles.label} ${name ? styles.labelFloating : ''}`}>Your Name</label>
                 </div>
 
                 <div className={styles.formGroup}>
@@ -159,9 +178,11 @@ export default function Contact() {
                     name="email" 
                     className={styles.input}
                     placeholder=" "
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required 
                   />
-                  <label htmlFor="email" className={styles.label}>Email Address</label>
+                  <label htmlFor="email" className={`${styles.label} ${email ? styles.labelFloating : ''}`}>Email Address</label>
                 </div>
 
                 <div className={styles.formGroup}>
@@ -171,9 +192,11 @@ export default function Contact() {
                     className={styles.textarea}
                     placeholder=" "
                     rows="6"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     required
                   ></textarea>
-                  <label htmlFor="message" className={styles.label}>Your Message</label>
+                  <label htmlFor="message" className={`${styles.label} ${message ? styles.labelFloating : ''}`}>Your Message</label>
                 </div>
 
                 <button 

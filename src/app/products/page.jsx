@@ -70,10 +70,13 @@ export default function Products() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <h1>Our Products</h1>
-        <p>Discover our range of premium water products, designed to meet your hydration needs.</p>
-      </div>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1>Our Products</h1>
+          <p className={styles.heroSubtitle}>Discover our range of premium water products, designed to meet your hydration needs.</p>
+        </div>
+      </section>
 
       <div className={styles.products}>
         {products.map((product) => (

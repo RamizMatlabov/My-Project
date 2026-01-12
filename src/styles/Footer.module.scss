@@ -1,14 +1,63 @@
 .footer {
-  background-color: #2f3640;
-  padding: 4rem 0 2rem;
-  margin-top: 4rem;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  padding: 5rem 0 2rem;
+  margin-top: 6rem;
   color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-gradient);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 168, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  @media (max-width: 1024px) {
+    &::after {
+      width: 300px;
+      height: 300px;
+      top: -30%;
+      right: -15%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &::after {
+      width: 200px;
+      height: 200px;
+      top: -20%;
+      right: -20%;
+    }
+  }
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 1rem;
+  }
 }
 
 .grid {
@@ -17,30 +66,91 @@
   gap: 2rem;
   margin-bottom: 3rem;
 
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  @media (max-width: 639px) {
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
   }
 }
 
 .column {
-  h3 {
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: 639px) {
+    text-align: center;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  position: relative;
+  padding-bottom: 0.75rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
     font-size: 1.25rem;
-    font-weight: 600;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+
+    &::after {
+      width: 40px;
+      height: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
     margin-bottom: 1rem;
-    color: #fff;
   }
 }
 
 .logoLink {
   display: flex;
   align-items: center;
-  gap: 0.1rem;
+  gap: 0.75rem;
   text-decoration: none;
   color: #fff;
-  transition: opacity 0.2s;
+  transition: all var(--transition-base);
+  margin-bottom: 1.5rem;
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    justify-content: flex-start;
+  }
 
   &:hover {
-    opacity: 0.8;
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.25rem;
+    gap: 0.5rem;
   }
 }
 
@@ -49,14 +159,39 @@
 }
 
 .logoText {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
 }
 
 .text {
   color: #e5e7eb;
   line-height: 1.5;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    text-align: left;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 }
 
 .list {
@@ -64,30 +199,113 @@
   padding: 0;
   margin: 0;
 
+  @media (max-width: 639px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   li {
     margin-bottom: 0.5rem;
     color: #e5e7eb;
+
+    @media (max-width: 768px) {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+    }
   }
 }
 
 .link {
   color: #e5e7eb;
-  transition: color 0.2s;
+  transition: all var(--transition-base);
+  position: relative;
+  padding: 0.5rem 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    justify-content: flex-start;
+    padding: 0.25rem 0;
+    min-height: auto;
+  }
+
+  &::before {
+    content: '→';
+    position: absolute;
+    left: -1.5rem;
+    opacity: 0;
+    transition: all var(--transition-base);
+    color: var(--primary);
+
+    @media (max-width: 639px) {
+      left: -1rem;
+    }
+  }
 
   &:hover {
-    color: #00a8ff;
+    color: var(--primary);
+    padding-left: 1.5rem;
+    transform: translateX(5px);
+
+    @media (max-width: 639px) {
+      padding-left: 1rem;
+    }
+
+    &::before {
+      opacity: 1;
+      left: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
   }
 }
 
 .bottom {
-  border-top: 1px solid #4b5563;
-  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2.5rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-top: 3rem;
+
+  @media (max-width: 768px) {
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+  }
 }
 
 .copyright {
-  color: #9ca3af;
-  font-size: 0.875rem;
+  color: #cbd5e0;
+  font-size: 0.95rem;
+  font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
 }
 
 .socialLinks {
@@ -184,26 +402,41 @@
 }
 
 // Responsive Design
+@media (max-width: 1024px) {
+  .footer {
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+  }
+}
+
 @media (max-width: 768px) {
   .footer {
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .logoImage {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2.5rem 0 1.25rem;
+    margin-top: 2.5rem;
   }
 
-  .column {
-    text-align: center;
-
-    h3 {
-      margin-bottom: 1rem;
-    }
+  .logoImage {
+    width: 35px;
+    height: 35px;
   }
+}
 
-  .socialLinks {
-    justify-content: center;
+.socialLinks {
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    justify-content: flex-start;
   }
 } 

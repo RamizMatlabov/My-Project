@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import styles from './page.module.scss'
-import { FaTint, FaTruck, FaRecycle, FaStar } from 'react-icons/fa'
+import { FaTint, FaTruck, FaRecycle, FaStar, FaShieldAlt } from 'react-icons/fa'
 
 export default function Home() {
   return (
@@ -59,6 +59,13 @@ export default function Home() {
             </div>
             <h3>Premium Quality</h3>
             <p>Rigorous quality control and testing</p>
+          </div>
+          <div className={styles.featureCard}>
+            <div className={styles.featureIcon}>
+              <FaShieldAlt />
+            </div>
+            <h3>Safe & Secure</h3>
+            <p>Certified safe water with guaranteed quality standards</p>
           </div>
         </div>
       </section>

@@ -1,14 +1,16 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
 import styles from '../styles/Footer.module.scss'
 
 export default function Footer() {
+  // Use state to avoid hydration mismatch
   const [currentYear, setCurrentYear] = useState(2024)
 
   useEffect(() => {
+    // Set year only on client side after hydration
     setCurrentYear(new Date().getFullYear())
   }, [])
 

@@ -20,9 +20,7 @@ export default function RootLayout({ children }) {
         <Navigation />
         <div className="min-h-screen flex flex-col main-layout">
           <main className="flex-grow">
-            <div className="container mx-auto px-4 py-8">
-              {children}
-            </div>
+            {children}
           </main>
           <Footer />
         </div>
