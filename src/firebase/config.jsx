@@ -7,12 +7,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAGSz1oKNRR0FqZHmlY8l0Wc77qmW9zv_o",
-  authDomain: "ice-water-8b866.firebaseapp.com",
-  projectId: "ice-water-8b866",
-  storageBucket: "ice-water-8b866.firebasestorage.app",
-  messagingSenderId: "436450429104",
-  appId: "1:436450429104:web:e187b700b8480c3f521375"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
 // Initialize Firebase

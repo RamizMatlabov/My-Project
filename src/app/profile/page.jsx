@@ -85,6 +85,9 @@ export default function Profile() {
               setPhoneNumber('')
               setAddress('')
               setBio('')
+              if (error.code === 'permission-denied') {
+                setError('Error loading profile: Permission denied')
+              }
             }
           }
         } else {
@@ -160,6 +163,9 @@ export default function Profile() {
         setPhoneNumber('')
         setAddress('')
         setBio('')
+        if (error.code === 'permission-denied') {
+          setError('Error loading profile: Permission denied')
+        }
       }
     }
   }
@@ -206,6 +212,9 @@ export default function Profile() {
         setPhoneNumber('')
         setAddress('')
         setBio('')
+        if (error.code === 'permission-denied') {
+          setError('Error loading profile: Permission denied')
+        }
       }
     }
   }
@@ -270,8 +279,9 @@ export default function Profile() {
         console.log('✓ Firestore updated')
       } catch (firestoreError) {
         console.warn('⚠ Firestore save warning:', firestoreError)
-        // If offline or timeout, Firestore will queue the write
-        // Don't block the UI - continue with local updates
+        if (firestoreError.code === 'permission-denied') {
+          throw firestoreError
+        }
         if (firestoreError.code === 'unavailable' || 
             firestoreError.message?.includes('offline') ||
             firestoreError.message?.includes('timeout')) {
@@ -279,7 +289,6 @@ export default function Profile() {
         } else {
           console.warn('Firestore error (non-critical):', firestoreError)
         }
-        // Continue anyway - local state will be updated
       }
       
       console.log('Step 3: Reloading user data...')
