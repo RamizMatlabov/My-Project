@@ -12,6 +12,31 @@ import {
 } from 'react-icons/fa'
 import styles from './profile.module.scss'
 
+const formatPhoneNumber = (value) => {
+  // Удаляем все нецифровые символы
+  const numbers = value.replace(/\D/g, '')
+  
+  // Если пусто, возвращаем пустую строку
+  if (numbers.length === 0) return ''
+  
+  // Если номер начинается с 998, используем его как есть
+  // Если начинается с другого, добавляем 998 в начало
+  let phoneNumbers = numbers
+  if (!phoneNumbers.startsWith('998')) {
+    phoneNumbers = '998' + phoneNumbers
+  }
+  
+  // Ограничиваем до 12 цифр (998 + 9 цифр)
+  const limited = phoneNumbers.slice(0, 12)
+  
+  // Форматируем: +998 (XX) XXX-XX-XX
+  if (limited.length <= 3) return `+${limited}`
+  if (limited.length <= 5) return `+998 (${limited.slice(3)}`
+  if (limited.length <= 8) return `+998 (${limited.slice(3, 5)}) ${limited.slice(5)}`
+  if (limited.length <= 10) return `+998 (${limited.slice(3, 5)}) ${limited.slice(5, 8)}-${limited.slice(8)}`
+  return `+998 (${limited.slice(3, 5)}) ${limited.slice(5, 8)}-${limited.slice(8, 10)}-${limited.slice(10)}`
+}
+
 export default function Profile() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -519,10 +544,11 @@ export default function Profile() {
                     <input
                       type="tel"
                       value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      onChange={(e) => setPhoneNumber(formatPhoneNumber(e.target.value))}
                       className={styles.editInput}
                       placeholder="+998 (99) 123-45-67"
                       disabled={saving}
+                      maxLength={19}
                     />
                   </div>
                 ) : (
