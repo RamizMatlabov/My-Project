@@ -67,7 +67,7 @@ const products = [
     name: 'Настольный кулер',
     price: 420000,
     currency: 'UZS',
-    image: '/file.svg',
+    image: '/5.png',
     description: 'Компактный настольный кулер для дома и офиса.',
     features: ['Подходит для бутылей 19л', 'Не занимает много места']
   },
@@ -76,7 +76,7 @@ const products = [
     name: 'Напольный кулер с охлаждением',
     price: 700000,
     currency: 'UZS',
-    image: '/file.svg',
+    image: '/6.png',
     description: 'Напольный кулер с функцией охлаждения воды.',
     features: ['Охлаждённая вода в любой момент', 'Идеален для офиса']
   },
