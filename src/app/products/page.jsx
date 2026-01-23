@@ -94,7 +94,7 @@ const products = [
     name: 'Держатель стаканов',
     price: 7000,
     currency: 'UZS',
-    image: '/file.svg',
+    image: '/8.png',
     description: 'Держатель для одноразовых стаканов рядом с кулером.',
     features: ['Удобное хранение стаканов', 'Лёгкий монтаж на кулер']
   }
