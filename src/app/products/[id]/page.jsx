@@ -1,15 +1,15 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import styles from './products.module.scss'
+import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { FaCheck } from 'react-icons/fa'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { FaCheck, FaArrowLeft } from 'react-icons/fa'
 import { auth } from '@/firebase/config'
 import { onAuthStateChanged } from 'firebase/auth'
 import Modal from '@/components/Modal'
-import Link from 'next/link'
 import { products } from '@/data/products'
+import styles from './product-details.module.scss'
 
 const formatPrice = (product) => {
   if (product.currency === 'USD') return `$${product.price}`
@@ -17,84 +17,78 @@ const formatPrice = (product) => {
   return String(product.price)
 }
 
-export default function Products() {
+export default function ProductDetails() {
+  const params = useParams()
   const router = useRouter()
   const [user, setUser] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
+  const [product, setProduct] = useState(null)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user)
-      setIsLoading(false)
     })
     return () => unsubscribe()
   }, [])
 
-  const handleOrderClick = (e, productId) => {
-    e.stopPropagation()
+  useEffect(() => {
+    if (params.id) {
+      const foundProduct = products.find(p => p.id === parseInt(params.id))
+      setProduct(foundProduct)
+    }
+  }, [params.id])
+
+  const handleOrderClick = () => {
     if (user) {
-      router.push(`/order?productId=${productId}`)
+      router.push(`/order?productId=${product.id}`)
     } else {
       setShowModal(true)
     }
   }
 
-  const handleProductClick = (productId) => {
-    router.push(`/products/${productId}`)
+  if (!product) {
+    return <div className={styles.container}>Loading...</div>
   }
 
   return (
     <div className={styles.container}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1>Our Products</h1>
-          <p className={styles.heroSubtitle}>Discover our range of premium water products, designed to meet your hydration needs.</p>
-        </div>
-      </section>
+      <Link href="/products" className={styles.backLink}>
+        <FaArrowLeft /> Back to Products
+      </Link>
 
-      <div className={styles.products}>
-        {products.map((product) => (
-          <div 
-            key={product.id} 
-            className={styles.product}
-            onClick={() => handleProductClick(product.id)}
-            style={{ cursor: 'pointer' }}
+      <div className={styles.productWrapper}>
+        <div className={styles.imageContainer}>
+          <Image 
+            src={product.image}
+            alt={product.name}
+            width={500}
+            height={500}
+            priority
+            className={styles.image}
+          />
+        </div>
+        
+        <div className={styles.content}>
+          <h1 className={styles.title}>{product.name}</h1>
+          <p className={styles.price}>{formatPrice(product)}</p>
+          <p className={styles.description}>{product.description}</p>
+          
+          <ul className={styles.features}>
+            {product.features.map((feature, index) => (
+              <li key={index}>
+                <span className={styles.checkIcon}><FaCheck /></span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <button 
+            className={styles.orderButton}
+            onClick={handleOrderClick}
           >
-            <div className={styles.imageContainer}>
-              <Image 
-                src={product.image}
-                alt={product.name}
-                width={365}
-                height={450}
-                priority
-                className={styles.image}
-                style={{ objectFit: 'contain' }}
-              />
-            </div>
-            <div className={styles.content}>
-              <h2>{product.name}</h2>
-              {product.size ? <p className={styles.size}>{product.size}</p> : null}
-              <p className={styles.price}>{formatPrice(product)}</p>
-              <p className={styles.description}>{product.description}</p>
-              <ul className={styles.features}>
-                {product.features.map((feature, index) => (
-                  <li key={index}>
-                    <span className={styles.checkIcon}><FaCheck /></span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <button 
-                className={styles.orderButton}
-                onClick={(e) => handleOrderClick(e, product.id)}
-              >
-                Order Now
-              </button>
-            </div>
-          </div>
-        ))}
+            Order Now
+          </button>
+        </div>
       </div>
 
       <Modal 
@@ -155,4 +149,4 @@ export default function Products() {
       </Modal>
     </div>
   )
-} 
+}
